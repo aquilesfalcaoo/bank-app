@@ -3,10 +3,6 @@ import { Cliente } from "./Cliente.js";
 export class ContaCorrente {
   // Atributo Estático
   static numeroDeContas = 0;
-  agencia;
-  _cliente;
-  _saldo = 0;
-
   // SET - Setar apenas um novo valor
   set cliente(novoValor) {
     if (novoValor instanceof Cliente) {
@@ -27,6 +23,7 @@ export class ContaCorrente {
   constructor(agencia, cliente) {
     this.agencia = agencia;
     this.cliente = cliente;
+    this._saldo = 0;
     ContaCorrente.numeroDeContas += 1;
   }
 
@@ -38,7 +35,7 @@ export class ContaCorrente {
   }
 
   depositar(valor) {
-    if (valor <= 0) return;
+    if (valor <= 100) return;
     this._saldo += valor;
   }
 
