@@ -1,46 +1,11 @@
-import { Cliente } from "./Cliente.js";
+import { Conta } from "./Conta.js";
 
-export class ContaCorrente {
-  // Atributo Estático
+export class ContaCorrente extends Conta {
   static numeroDeContas = 0;
-  // SET - Setar apenas um novo valor
-  set cliente(novoValor) {
-    if (novoValor instanceof Cliente) {
-      this._cliente = novoValor;
-    }
-  }
 
-  // GET - Serve apenas para leitura, e sempre ter um retorno.
-  get cliente() {
-    return this._cliente;
-  }
-
-  get saldo() {
-    return this._saldo;
-  }
-
-  // Construtores inicializa-se os atributos
-  constructor(agencia, cliente) {
-    this.agencia = agencia;
-    this.cliente = cliente;
-    this._saldo = 0;
+  //! Construtores inicializa-se os atributos
+  constructor(agencia, cliente, saldoInicial) {
+    super(agencia, cliente, saldoInicial);
     ContaCorrente.numeroDeContas += 1;
-  }
-
-  sacar(valor) {
-    if (this._saldo >= valor) {
-      this._saldo -= valor;
-      return valor;
-    }
-  }
-
-  depositar(valor) {
-    if (valor <= 100) return;
-    this._saldo += valor;
-  }
-
-  transferir(valor, conta) {
-    const valorSacado = this.sacar(valor);
-    conta.depositar(valorSacado);
   }
 }
