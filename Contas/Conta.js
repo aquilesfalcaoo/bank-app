@@ -10,6 +10,10 @@ export class Conta {
     this._saldo = saldoInicial;
   }
 
+  get saldo() {
+    return this._saldo;
+  }
+
   //* Método Abstrato
   sacar(valor) {
     throw new Error("O método sacar da Conta é Abstrato.");
